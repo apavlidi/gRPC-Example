@@ -2,9 +2,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.inprocess.InProcessChannelBuilder;
 import java.util.Optional;
-import org.grpcmock.GrpcMock;
 import org.grpcmock.junit5.InProcessGrpcMockExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,9 +16,7 @@ public class GreetingServiceImplTest {
 
   @BeforeEach
   void setupChannel() {
-    serverChannel = ManagedChannelBuilder.forAddress("localhost", 50052)
-        .usePlaintext()
-        .build();
+    serverChannel = ManagedChannelBuilder.forAddress("localhost", 50052).usePlaintext().build();
   }
 
   @AfterEach
@@ -30,14 +26,13 @@ public class GreetingServiceImplTest {
 
   @Test
   void should_test_default_extension_resetting_after_test_second() {
-    HelloServiceGrpc.HelloServiceBlockingStub stub = HelloServiceGrpc.newBlockingStub(serverChannel);
+    HelloServiceGrpc.HelloServiceBlockingStub stub =
+        HelloServiceGrpc.newBlockingStub(serverChannel);
 
-    ObjectResponse response = stub.greeting(
-        ObjectRequest.newBuilder().setFirstName("Alex").setLastName("Pavlidis").build());
+    ObjectResponse response =
+        stub.greeting(
+            ObjectRequest.newBuilder().setFirstName("Alex").setLastName("Pavlidis").build());
 
     assertEquals(response.getMessage(), "Hello 👋, Alex Pavlidis");
   }
-
 }
-
-
