@@ -1,6 +1,7 @@
 # gRPC-Example
 A simple example Java API exposed through gRPC.
 The server also supports reflection so clients can get the information of the api exposed by the grpc server.
+The project also contains `spotless` to ensure code standards and formatting.
 
 ### Contract
 There is only one unary operation.
